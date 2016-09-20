@@ -1,0 +1,17 @@
+{
+  "name": "fold-dashboard",
+  "private": true,
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#^1.0.0",
+    "micromer": "https://github.com/aahoo/micromer.git",
+    "polymer": "https://github.com/aahoo/micromer.git#master"
+  },
+  "devDependencies": {
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "ignore": [],
+  "resolutions": {
+    "font-roboto": "^1.0.1"
+  }
+}

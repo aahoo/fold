@@ -1,0 +1,125 @@
+{
+  "root": {
+    "models": [{
+      "is": "x-layout",
+      "class": "header wrapper grid li vertical layout flex-none relative",
+      "draggable": "true",
+      "models": [{
+        "is": "x-layout",
+        "class": "bar content grid li horizontal layout scroll-x height-1 pad-2",
+        "draggable": "true",
+        "models": [{
+          "is": "x-folder",
+          "gid": "chrome.bookmarks.1"
+        }]
+      }]
+    }, {
+      "is": "x-layout",
+      "class": "middle wrapper grid li horizontal layout flex scroll-x relative",
+      "models": [{
+        "is": "x-layout",
+        "id": "default_column",
+        "class": "column content grid li vertical layout scroll-y width-6 min-width-6 pad-2",
+        "ctrls": "maximize",
+        "models": [{
+          "is": "x-folder",
+          "gid": "chrome.management.apps"
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.bookmarks.0"
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.bookmarks.recent"
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.topSites.folder"
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.sessions.closed.folder"
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.sessions.devices.folder"
+        }]
+      }, {
+        "is": "x-layout",
+        "class": "column content grid li vertical layout flex scroll-y min-width-6 pad-2",
+        "draggable": "true",
+        "ctrls": "delete maximize"
+      }, {
+        "is": "x-layout",
+        "class": "column content grid li vertical layout flex scroll-y min-width-6 pad-2",
+        "draggable": "true",
+        "ctrls": "delete maximize",
+        "models": [{
+          "is": "x-card",
+          "models": [{
+            "tag": "h2",
+            "textContent": "Hey!"
+          }, {
+            "tag": "p",
+            "textContent": "Thank you for choosing Fold, a simple yet powerful dashboard for Chroming. Arrange your Bookmarks and Apps anyway you want. Fold features a fully customizable layout. Here are some tips to get started."
+          }, {
+            "tag": "ul",
+            "innerHTML": "<li>Pressing <strong>New</strong> at the bottom-left creates a new column. You can also drop New or any action button on elements or vice versa.</li><li><strong>Remove</strong> works only by drag and drop. Note that removed items <strong>CANNOT</strong> be recovered!</li><li><strong>Bookmarker</strong> automatically bookmarks the current tab in the last bookmark's folder. It works only in popup mode when it is open (by default it is closed).</li><li>Fold and unfold <strong>columns</strong> by clicking on a blank spot (there is some at the top). Maximize columns using middle-click. Click on the edges or on a blank spot to exit the maximized mode.</li><li>Unfold a hidden <strong>drawer</strong> by clicking on the left edge or the Menu button.</li><li><strong>Bars</strong> are horizontally scrollable.</li>"
+          }, {
+            "tag": "p",
+            "innerHTML": "We have just launched Fold and plan on expanding it. Bookmark editing will come soon."
+          }]
+        }]
+      }]
+    }, {
+      "is": "x-layout",
+      "class": "footer wrapper grid li vertical layout flex-none relative",
+      "draggable": "true",
+      "models": [{
+        "is": "x-layout",
+        "class": "bar content grid li horizontal layout scroll-x height-1 pad-2",
+        "draggable": "true",
+        "models": [{
+          "is": "x-action",
+          "icon": "menu",
+          "action": {
+            "selector": "#default_column.column.content",
+            "tap": "clss",
+            "tapArgs": ["collapse", "toggle"],
+            "drop": "showMenu"
+          }
+        }, {
+          "is": "x-action",
+          "icon": "add",
+          "textContent": "New",
+          "action": {
+            "selector": ".middle.wrapper",
+            "tap": "insert",
+            "tapArgs": [{
+              "is": "x-layout",
+              "class": "column content grid li vertical layout flex scroll-y min-width-6 pad-2",
+              "draggable": "true",
+              "ctrls": "delete maximize"
+            }, {
+              "copy": 1,
+              "index": 1
+            }],
+            "drop": "new"
+          }
+        }, {
+          "is": "x-action",
+          "icon": "delete",
+          "textContent": "Remove",
+          "action": {
+            "drop": "delete"
+          }
+        }, {
+          "is": "x-folder",
+          "title": "Bookmarker",
+          "models": [{
+            "is": "x-bookmarker"
+          }]
+        }, {
+          "is": "x-folder",
+          "gid": "chrome.management.apps"
+        }]
+      }]
+    }]
+  }
+}

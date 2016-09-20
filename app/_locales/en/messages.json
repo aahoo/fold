@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Fold: New Tab Dashboard for Bookmarks and more",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "Fold",
+    "description": "The short name of the application"
+  },
+  "appDescription": {
+    "message": "Customizable dashboard for bookmarks, apps and a lot more!",
+    "description": "The description of the application"
+  }
+}

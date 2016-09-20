@@ -1,0 +1,73 @@
+/* layout classes */
+.scroll-x {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.scroll-y {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.pad-1 {
+  padding: $base-space;
+}
+.pad-2 {
+  padding: 2 *$base-space;
+}
+.height-1 {
+  min-height: $line-height;
+}
+.min-width-0 {
+  min-width: 0;
+}
+.min-width-1 {
+  min-width: $line-height;
+}
+.min-width-3 {
+  min-width: 3 * $line-height;
+}
+.min-width-6 {
+  min-width: 6 * $line-height;
+}
+.min-width-9 {
+  min-width: 9 * $line-height;
+}
+.width-0 {
+  width: 0;
+}
+.width-1 {
+  width: $line-height;
+}
+.width-3 {
+  width: 3 * $line-height;
+}
+.width-6 {
+  width: 6 * $line-height;
+}
+.width-9 {
+  width: 9 * $line-height;
+}
+
+body.drag-active *::-webkit-scrollbar {
+  width : 0;
+}
+::-webkit-scrollbar {
+  @include scrollbar();
+}
+:hover::-webkit-scrollbar {
+  @include hover-scrollbar();
+}
+::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb();
+}
+::-webkit-scrollbar-thumb:horizontal {
+  @include scrollbar-thumb-horiz();
+}
+::-webkit-scrollbar-thumb:hover {
+  @include scrollbar-thumb-hover();
+}
+::-webkit-scrollbar-thumb:active {
+  @include scrollbar-thumb-active();
+}
+:not(:hover)::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb-inactive();
+}

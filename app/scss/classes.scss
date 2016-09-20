@@ -1,0 +1,112 @@
+/* shared styles for all elements and index.html */
+a:link,
+a:visited {
+  color: inherit;
+}
+.transparent {
+  opacity       : 0;
+  pointer-events: none;
+}
+[icon] {
+  @include icon();
+}
+[icon][size="12"] {
+  @include icon-size(12);
+}
+[icon][size="18"] {
+  @include icon-size(18);
+}
+[icon][size="24"] {
+  @include icon-size(24);
+}
+.btn {
+  @include btn();
+}
+.btn:hover {
+  @include btn-hover();
+}
+.btn:focus {
+  outline: none;
+}
+.btn:focus {
+  @include btn-focus();
+}
+.btn:active {
+  @include btn-active();
+}
+.rounded {
+  border-radius: $rounded-border-radius;
+}
+.flex {
+  flex: 1;
+}
+.movable {
+  cursor: move;
+}
+.grabbable:hover {
+  cursor: -webkit-grab;
+}
+.grabbable:active {
+  cursor: -webkit-grabbing;
+}
+[draggable] {
+  -webkit-user-select: none;
+  user-select        : none;
+}
+[dragging] {
+  z-index         : 10000!important;
+  transition      : background-color $trans-t $trans-d!important;
+  background-color: $active-bg-c!important;
+}
+.dragged-over {
+  background-color: $bg-c;
+}
+[func="delete"],
+[func="delete"] > .delegate {
+  background-color: #FF6252!important;
+}
+[func="edit"],
+[func="edit"] > .delegate {
+  background-color: #fad008!important;
+}
+[func="new"],
+[func="new"] > .delegate {
+  background-color: #51B241!important;
+}
+[func="menu"],
+[func="menu"] > .delegate {
+  background-color: #3BA7DF!important;
+}
+.link-in {
+  box-shadow: inset 0 0 10px $chrome-green!important;
+}
+.move-in {
+  box-shadow: inset 0 0 10px $chrome-yellow!important;
+}
+.link-after,
+.link-before,
+.move-after,
+.move-before {
+  border-radius: 0;
+}
+
+.horizontal > .folder.li .move-before,
+.horizontal > .link-before,
+.horizontal > .move-before {
+  box-shadow: inset 2px 0 0 $accent-c!important;
+}
+.horizontal > .folder.li .move-after,
+.horizontal > .link-after,
+.horizontal > .move-after {
+  box-shadow: inset -2px 0 0 $accent-c!important;
+}
+.vertical > .folder.li .move-before,
+.vertical > .link-before,
+.vertical > .move-before {
+  box-shadow: inset 0 2px 0 $accent-c!important;
+}
+.vertical > .folder.li .move-after,
+.vertical > .link-after,
+.vertical > .move-after {
+  box-shadow: inset 0 -2px 0 $accent-c!important;
+}

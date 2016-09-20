@@ -1,0 +1,24 @@
+{
+    "rules": {
+        "indent": [ 0, 2 ],
+        "quotes": [ 2, "single" ],
+        "linebreak-style": [ 2, "windows" ],
+        "semi": [ 2, "always" ],
+        "comma-dangle": [1, "only-multiline"],
+        "no-console": [0],
+        "no-sparse-arrays": [0],
+    },
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "globals": {
+        "Polymer": true,
+        "$$": true,
+        "__": true,
+        "_": true,
+        "log": true,
+        "chrome": true,
+    },
+    "extends": "eslint:recommended"
+}

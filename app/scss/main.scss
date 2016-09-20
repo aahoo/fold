@@ -1,0 +1,314 @@
+@import 'theme.scss';
+@import 'iron-flex-classes.scss';
+@import 'svg3line.scss';
+@import 'classes.scss';
+@import 'layout.scss';
+
+/* body */
+body {
+  @include paper-font-body1();
+  color     : $text-c;
+  min-width : 800px;
+  min-height: 600px;
+  overflow  : hidden;
+  margin    : 0;
+}
+@keyframes scrim-bg {
+  0% {
+    background-color: rgba(0,0,0,0);
+  }
+  1% {
+    background-color: rgba(0,0,0,0);
+  }
+  100% {
+    background-color: rgba(0,0,0,.5);
+  }
+}
+@keyframes scrim-bg-r {
+  0% {
+    background-color: rgba(0,0,0,.5);
+  }
+  100% {
+    background-color: rgba(0,0,0,0);
+  }
+}
+
+#scrim {
+  position          : fixed;
+  width             : 100vw;
+  height            : 100vh;
+  background-color  : rgba(0,0,0,0);
+  animation-duration: $trans-d;
+  z-index           : 1000;
+  animation-name    : scrim-bg-r;
+  &:not(.active) {
+    pointer-events: none;
+  }
+  &.active {
+    background-color: rgba(0,0,0,.5);
+    animation-name  : scrim-bg;
+  }
+  #modal-wrapper {
+    pointer-events     : none;
+    background-color   : transparent;
+    position           : absolute;
+    transition         : all $trans-d-t;
+    transition-property: left , right, top , bottom, width , height;
+    &.maxed {
+      left  : 1px!important;
+      top   : 1px!important;
+      width : calc(100% - 2px)!important;
+      height: calc(100% - 2px)!important;
+    }
+    & > * {
+      pointer-events: auto;
+      box-sizing    : border-box;
+      min-width     : 100%;
+      min-height    : 100%;
+      height        : 100%;
+    }
+  }
+}
+/* .grid */
+.flex-none.wrapper {
+  min-height: 2 * $base-space;
+}
+.content.grid {
+  background-color: $light-bg-c;
+  transition      : $trans-all;
+}
+.middle.wrapper.scroll-x {
+  overflow-x: overlay;
+}
+.middle.wrapper::-webkit-scrollbar {
+  height: 0;
+}
+.middle.wrapper::-webkit-scrollbar-thumb {
+  border-radius: 2 * $base-size;
+}
+.middle.wrapper:hover::-webkit-scrollbar {
+  height: 4 * $base-size;
+}
+.footer.wrapper .bar.content:first-child {
+  box-shadow: inset 0 1px 0 $bg-c;
+}
+.column.content {
+  padding-top: $icon-size-t-18;
+  transition : $trans-all;
+  &#default_column {
+    background-color: $bg-c;
+    min-width       : 6 * $line-height;
+  }
+}
+:not(.maxed) > .collapse.column.content {
+  & > .ctrls {
+    transition    : all ($trans-d / 2) $trans-t ($trans-d / 2);
+    opacity       : 0;
+    pointer-events: none;
+  }
+  &:not(#default_column) {
+    flex     : none;
+    width    : $line-height;
+    min-width: $line-height;
+    .li {
+      transition         : $trans-li, background-position $trans-d-t $trans-d;
+      color              : transparent;
+      background-position: center center;
+    }
+  }
+  &#default_column {
+    margin-left  : -6 * $line-height;
+    padding-left : 0;
+    padding-right: 1px;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}
+/* types */
+[is="x-button"] {
+  position: relative;
+}
+
+/* .app.li */
+.app.li {
+  cursor: pointer;
+}
+
+/* .bookmark.li */
+.bookmark.li {
+  cursor: pointer;
+}
+
+/* .item */
+.action.li,
+.item.li {
+  flex: none;
+}
+.bar.content .item.li {
+  max-width: $max-bar-item-width;
+}
+.bar.content [is="x-bookmarker"] + .item.li {
+  max-width: 2 * $max-bar-item-width;
+}
+
+.column.content .btn.li {
+  transition: $trans-li, background-position 1ms;
+}
+.folder.li[state="closed"] > .li:not(.folder-button),
+.folder.li[state="empty"] > .li:not(.folder-button) {
+  display: none!important;
+}
+.label {
+  @include label();
+}
+.bgicon {
+  @include bgicon($favicon-size);
+}
+
+.inline {
+  display    : flex;
+  align-items: center;
+}
+
+/* .folder.li */
+.folder.li {
+  display: flex;
+  cursor : default;
+}
+.column.content .folder.li {
+  flex-direction: column;
+}
+.folder-button {
+  @include bgicon($favicon-size);
+  text-indent        : 0;
+  background-image   : $i-folder-icon;
+  background-position: -50px;
+  order              : -1;
+  outline            : none;
+}
+.content.li > .folder {
+  .folder .folder-button {
+    @include bgicon($favicon-size);
+  }
+}
+.column.content {
+  & > .folder > .folder-button {
+    font-size  : 125%;
+    line-height: 1.2 * $line-height;
+  }
+}
+.bar.content {
+  & > .folder > .folder-button {
+    @include bgicon($favicon-size);
+  }
+  & > .folder:not([state="closed"]):not([state="empty"]) > .folder-button {
+    text-indent     : -$max-bar-item-width;
+    background-image: $i-grab-handle;
+    color           : transparent;
+  }
+}
+[state=opened] > .folder-button {
+  background-image: $i-folder-icon-open;
+}
+[state=empty] > .folder-button {
+  background-image: $i-folder-icon-empty;
+  cursor          : default;
+}
+
+/* overlay-controls */
+.ctrls {
+  position       : absolute;
+  top            : 0;
+  display        : flex;
+  justify-content: flex-end;
+  align-items    : center;
+  z-index        : 100;
+  border-radius  : $border-radius;
+  color          : #999;
+}
+.column.content {
+  & > .ctrls {
+    transition: all 0.5s $trans-t 0.1s;
+    // align-self: flex-end; // did not work on some devices
+  }
+}
+#scrim .column.content > .ctrls {
+  right: $scrollbar-width;
+  [icon="close"],
+  [icon="maximize"] {
+    display: none;
+  }
+}
+
+// out of the way :D I know it sucks, but it's more efficient that writing JS
+.column.content:not(.collapse) > .folder > .folder {
+  & > .folder > .folder-button,
+  & > :not(.folder):not(.folder-button) {
+    background-position: 2 * $base-space + 1 * $base-indent;
+    padding-left       : 2 * $base-space + 1 * $base-indent;
+  }
+  & > .folder {
+    & > .folder > .folder-button,
+    & > :not(.folder):not(.folder-button) {
+      background-position: 2 * $base-space + 2 * $base-indent;
+      padding-left       : 2 * $base-space + 2 * $base-indent;
+    }
+    & > .folder {
+      & > .folder > .folder-button,
+      & > :not(.folder):not(.folder-button) {
+        background-position: 2 * $base-space + 3 * $base-indent;
+        padding-left       : 2 * $base-space + 3 * $base-indent;
+      }
+      & > .folder {
+        & > .folder > .folder-button,
+        & > :not(.folder):not(.folder-button) {
+          background-position: 2 * $base-space + 4 * $base-indent;
+          padding-left       : 2 * $base-space + 4 * $base-indent;
+        }
+        & > .folder {
+          & > .folder > .folder-button,
+          & > :not(.folder):not(.folder-button) {
+            background-position: 2 * $base-space + 5 * $base-indent;
+            padding-left       : 2 * $base-space + 5 * $base-indent;
+          }
+          & > .folder {
+            & > .folder > .folder-button,
+            & > :not(.folder):not(.folder-button) {
+              background-position: 2 * $base-space + 6 * $base-indent;
+              padding-left       : 2 * $base-space + 6 * $base-indent;
+            }
+            & > .folder {
+              & > .folder > .folder-button,
+              & > :not(.folder):not(.folder-button) {
+                background-position: 2 * $base-space + 7 * $base-indent;
+                padding-left       : 2 * $base-space + 7 * $base-indent;
+              }
+              & > .folder {
+                & > .folder > .folder-button,
+                & > :not(.folder):not(.folder-button) {
+                  background-position: 2 * $base-space + 8 * $base-indent;
+                  padding-left       : 2 * $base-space + 8 * $base-indent;
+                }
+                & > .folder {
+                  & > .folder > .folder-button,
+                  & > :not(.folder):not(.folder-button) {
+                    background-position: 2 * $base-space + 9 * $base-indent;
+                    padding-left       : 2 * $base-space + 9 * $base-indent;
+                  }
+                  & > .folder {
+                    & > .folder > .folder-button,
+                    & > :not(.folder):not(.folder-button) {
+                      background-position: 2 * $base-space + 10 * $base-indent;
+                      padding-left       : 2 * $base-space + 10 * $base-indent;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
