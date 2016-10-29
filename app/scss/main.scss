@@ -100,7 +100,7 @@ body {
     min-width       : 6 * $line-height;
   }
 }
-:not(.maxed) > .collapse.column.content {
+:not(.maxed) > [state="collapsed"].column.content {
   & > .ctrls {
     transition    : all ($trans-d / 2) $trans-t ($trans-d / 2);
     opacity       : 0;
@@ -242,7 +242,7 @@ body {
 }
 
 // out of the way :D I know it sucks, but it's more efficient that writing JS
-.column.content:not(.collapse) > .folder > .folder {
+.column.content:not([state="collapsed"]) > .folder > .folder {
   & > .folder > .folder-button,
   & > :not(.folder):not(.folder-button) {
     background-position: 2 * $base-space + 1 * $base-indent;

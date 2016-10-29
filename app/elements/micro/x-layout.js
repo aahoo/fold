@@ -9,7 +9,12 @@ Polymer({
   is: 'x-layout',
   extends: 'div',
   properties: {
-    class: { type: String, reflectToAttribute: true, observer: 'notifyStore' },
+    class: { type: String, reflectToAttribute: true },
+
+    /**
+    * state of the layout. For now only collapsed or ''.
+    */
+    state: { type: String, reflectToAttribute: true, observer: 'notifyStore' },
 
     /**
     * the child models in a layout element.
@@ -57,8 +62,8 @@ Polymer({
    */
   tap(e) {
     if(!__.ePrevent(e) && e.target == this && e.button != 1)
-      this.maxAnim && this.maxAnim.clone ?
-      this.toggleMax() : this.clss('collapse', 'toggle');
+      this.maxAnim && this.maxAnim.clone ? this.toggleMax() :
+      (this.state = this.state == 'collapsed' ? '' : 'collapsed');
   },
 
   /**
