@@ -62,8 +62,8 @@ Polymer({
    */
   tap(e) {
     if(!__.ePrevent(e) && e.target == this && e.button != 1)
-      this.maxAnim && this.maxAnim.clone ? this.toggleMax() :
-      (this.state = this.state == 'collapsed' ? '' : 'collapsed');
+      this.maxAnim && this.maxAnim.clone ?
+      this.toggleMax() : this.toggleCollapse();
   },
 
   /**
@@ -96,6 +96,15 @@ Polymer({
    */
   toggleMax(callback) {
     this.maxAnim = $$.animation.toggleMax(this, this.maxAnim, callback);
+  },
+
+  /**
+   * Toggles between normal and maximized state.
+   *
+   * @param {function} callback
+   */
+  toggleCollapse() {
+    this.state = this.state == 'collapsed' ? '' : 'collapsed';
   },
 
   /**

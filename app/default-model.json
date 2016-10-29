@@ -80,8 +80,7 @@
           "icon": "menu",
           "action": {
             "selector": "#default_column.column.content",
-            "tap": "clss",
-            "tapArgs": ["collapse", "toggle"],
+            "tap": "toggleCollapse",
             "drop": "showMenu"
           }
         }, {
